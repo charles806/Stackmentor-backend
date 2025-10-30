@@ -41,18 +41,6 @@ mongoose
   .then(() => console.log("✅ MongoDB connected successfully"))
   .catch((err) => console.error("❌ MongoDB connection error:", err.message));
 
-// --- TEST ROUTE (add this below your other routes)
-app.get("/test-db", async (req, res) => {
-  try {
-    await mongoose.connection.db.admin().ping();
-    res.json({ status: "✅ MongoDB Connected" });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ status: "❌ Connection failed", error: error.message });
-  }
-});
-
 app.use(express.json());
 
 // Routes
