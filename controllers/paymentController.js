@@ -52,7 +52,7 @@ router.post("/initialize", async (req, res) => {
       {
         email,
         amount: amount * 100, // Convert to kobo
-        callback_url: "http://localhost:5173/payment-success",
+        callback_url: "http://stackmentor.vercel.app/payment-success",
         metadata: {
           fullName,
           email,
@@ -159,7 +159,7 @@ router.get("/verify/:reference", async (req, res) => {
           metadata.paymentType === "part"
             ? `Remaining balance: ₦${remainingAmount}\nAccess expires: ${accessExpiresAt?.toDateString()}\n\n`
             : "You have unlimited access!\n\n"
-        }Login at: http://localhost:5173/login\n\nHappy Learning!\nStackMentor Team`,
+        }Login at: http://stackmentor.vercel.app/login\n\nHappy Learning!\nStackMentor Team`,
       });
     }
 
@@ -168,14 +168,15 @@ router.get("/verify/:reference", async (req, res) => {
 
     // Determine redirect URL based on course
     const redirectUrls = {
-      frontend: "http://localhost:5173/learning-materials-frontend",
-      backend: "http://localhost:5173/learning-materials-backend",
-      fullstack: "http://localhost:5173/learning-materials",
+      frontend: "http://stackmentor.vercel.app/learning-materials-frontend",
+      backend: "http://stackmentor.vercel.app/learning-materials-backend",
+      fullstack: "http://stackmentor.vercel.app/learning-materials",
     };
 
     const redirectUrl =
       redirectUrls[normalizedCourse] ||
-      "http://localhost:5173/learning-materials";
+      "https://stackmentor.vercel.app/learning-materials";
+      //https://stackmentor.vercel.app/
 
     res.status(200).json({
       success: true,
