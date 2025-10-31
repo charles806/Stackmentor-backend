@@ -6,6 +6,8 @@ import authRoutes from "./routes/authRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import emailRoutes from "./routes/emailRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
+import contentRoutes from "./routes/contentRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -28,7 +30,7 @@ app.use(
       if (allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        console.log(`❌ CORS blocked origin: ${origin}`);
+        console.log(`CORS blocked origin: ${origin}`);
         callback(new Error("Not allowed by CORS"));
       }
     },
@@ -45,6 +47,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api", emailRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/content", contentRoutes);
 
 app.get("/", (req, res) => res.send("🚀 StackMentor API Running"));
 

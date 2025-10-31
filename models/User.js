@@ -26,6 +26,7 @@ const userSchema = new mongoose.Schema(
     accessExpiresAt: { type: Date },
     isActive: { type: Boolean, default: true },
     remainingAmount: { type: Number, default: 0 },
+    isAdmin: { type: Boolean, default: false }, 
   },
   { timestamps: true }
 );
