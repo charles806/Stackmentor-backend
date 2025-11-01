@@ -176,14 +176,12 @@ router.get("/verify/:reference", async (req, res) => {
 
     // Determine redirect URL based on course
     const redirectUrls = {
-      frontend: `${frontendUrl}/learning-materials-frontend`,
-      backend: `${frontendUrl}/learning-materials-backend`,
-      fullstack: `${frontendUrl}/learning-materials`,
+      frontend: "/learning-materials-frontend",
+      backend: "/learning-materials-backend",
+      fullstack: "/learning-materials",
     };
 
-    const redirectUrl =
-      redirectUrls[normalizedCourse] || `${frontendUrl}/learning-materials`;
-
+    const redirectUrl = redirectUrls[normalizedCourse] || "/learning-materials";
     res.status(200).json({
       success: true,
       message: "Payment verified and user created",
