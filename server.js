@@ -8,6 +8,7 @@ import userRoutes from "./routes/userRoutes.js";
 import emailRoutes from "./routes/emailRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import contentRoutes from "./routes/contentRoutes.js";
+import certificateRoutes from "./routes/certificateRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -49,6 +50,7 @@ app.use("/api/users", userRoutes);
 app.use("/api", emailRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/content", contentRoutes);
+app.use("/api/certificates", certificateRoutes);
 
 app.get("/", (req, res) => res.send("🚀 StackMentor API Running"));
 

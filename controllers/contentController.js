@@ -1,4 +1,19 @@
 import CourseContent from "../models/CourseContent.js";
+import Payment from "../models/Payment.js";
+
+// Get user's payment history
+export const getUserPaymentHistory = async (req, res) => {
+  try {
+    const userEmail = req.user.email;
+    
+    const payments = await Payment.find({ email: userEmail })
+      .sort({ createdAt: -1 });
+
+    res.status(200).json({ payments });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch payment history" });
+  }
+};
 
 // Get all content for a specific course
 export const getCourseContent = async (req, res) => {
