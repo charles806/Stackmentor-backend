@@ -14,10 +14,10 @@ connectDB();
 
 const app = express();
 
-// ✅ FIXED CORS - Allow your frontend
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
+  "https://stackmentor.vercel.app",
   "https://stackmentorr.vercel.app",
   process.env.FRONTEND_URL,
 ];
