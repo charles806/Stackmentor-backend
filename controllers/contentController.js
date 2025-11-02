@@ -5,9 +5,10 @@ import Payment from "../models/Payment.js";
 export const getUserPaymentHistory = async (req, res) => {
   try {
     const userEmail = req.user.email;
-    
-    const payments = await Payment.find({ email: userEmail })
-      .sort({ createdAt: -1 });
+
+    const payments = await Payment.find({ email: userEmail }).sort({
+      createdAt: -1,
+    });
 
     res.status(200).json({ payments });
   } catch (error) {
@@ -54,7 +55,16 @@ export const getContentById = async (req, res) => {
 // Create new content (Admin only)
 export const createContent = async (req, res) => {
   try {
-    const { course, title, description, category, content, videoUrl, fileUrl, order } = req.body;
+    const {
+      course,
+      title,
+      description,
+      category,
+      content,
+      videoUrl,
+      fileUrl,
+      order,
+    } = req.body;
 
     const newContent = await CourseContent.create({
       course,

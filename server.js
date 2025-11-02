@@ -9,6 +9,7 @@ import emailRoutes from "./routes/emailRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import contentRoutes from "./routes/contentRoutes.js";
 import certificateRoutes from "./routes/certificateRoutes.js";
+import selfPing from "./utils/selfPing.js";
 
 dotenv.config();
 connectDB();
@@ -41,6 +42,15 @@ app.use(
   })
 );
 
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "alive",
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    message: "🚀 StackMentor API is running",
+  });
+});
+
 app.use(express.json());
 
 // Routes
@@ -55,4 +65,13 @@ app.use("/api/certificates", certificateRoutes);
 app.get("/", (req, res) => res.send("🚀 StackMentor API Running"));
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+
+  if (
+    process.env.NODE_ENV === "production" ||
+    process.env.ENABLE_SELF_PING === "true"
+  ) {
+    selfPing.start();
+  }
+});
