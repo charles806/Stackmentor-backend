@@ -37,6 +37,8 @@ export const getCourseContent = async (req, res) => {
 // Get single content by ID
 export const getContentById = async (req, res) => {
   try {
+    console.log("getContentById called for id:", req.params.id); // <- debug log
+
     const content = await CourseContent.findById(req.params.id).populate(
       "createdBy",
       "fullName email"

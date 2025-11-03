@@ -12,10 +12,9 @@ import adminOnly from "../middleware/adminMiddleware.js";
 
 const router = express.Router();
 
-// Public routes (protected - requires login)
-router.get("/:course", protect, getCourseContent);
-router.get("/:course/:category", protect, getContentByCategory);
 router.get("/single/:id", protect, getContentById);
+router.get("/:course/:category", protect, getContentByCategory);
+router.get("/:course", protect, getCourseContent);
 
 // Admin routes
 router.post("/", protect, adminOnly, createContent);
