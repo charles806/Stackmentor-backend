@@ -21,7 +21,7 @@ const allowedOrigins = [
   "http://localhost:3000",
   "https://stackmentor.vercel.app",
   "https://stackmentorr.vercel.app",
-  process.env.FRONTEND_URL,
+  process.env.FRONTEND_URL || "https://stackmentorr.vercel.app",
 ];
 
 app.use(
