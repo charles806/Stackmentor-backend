@@ -56,7 +56,7 @@ router.post("/initialize", async (req, res) => {
       {
         email,
         amount: amount * 100,
-        callback_url: `${frontendUrl}/payment-success`, // ✅ FIXED
+        callback_url: `${frontendUrl}/payment-success`, // ✅ FIXED - Use frontend URL
         metadata: {
           fullName,
           email,
@@ -176,12 +176,14 @@ router.get("/verify/:reference", async (req, res) => {
 
     // Determine redirect URL based on course
     const redirectUrls = {
-      frontend: "/learning-materials-frontend",
-      backend: "/learning-materials-backend",
-      fullstack: "/learning-materials",
+      frontend: `${frontendUrl}/learning-materials-frontend`,
+      backend: `${frontendUrl}/learning-materials-backend`,
+      fullstack: `${frontendUrl}/learning-materials`,
     };
 
-    const redirectUrl = redirectUrls[normalizedCourse] || "/learning-materials";
+    const redirectUrl =
+      redirectUrls[normalizedCourse] || `${frontendUrl}/learning-materials`;
+
     res.status(200).json({
       success: true,
       message: "Payment verified and user created",
